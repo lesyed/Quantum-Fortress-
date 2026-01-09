@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  quantum-fortress:
+    build: .
+    container_name: qf_api_server
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ENV=production
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+    restart: unless-stopped
+
+  # Note: Prometheus and Grafana are optional. 
+  # If you don't have the config files for them yet, 
+  # keep them commented out or deleted to avoid errors.
